@@ -1,4 +1,4 @@
-.header{
+ .header{
     width: 100%;
     cursor: pointer;
     position: fixed;
@@ -7,15 +7,15 @@
     text-transform: uppercase;
     background-color: #394439;
     font-family: sans-serif;
-    font-size: 5vw;
-    padding: 15px;
+    font-size: 4vw;
+    padding: px;
     box-shadow: 0 1px 5px rgb(199, 56, 56);
     color: white;
-    z-index: 100;
-}
+    z-index: 100;  
+ }
 @media (max-width:1000px){
     .header{
-        padding-top:15px ;
+        padding-top:px ;
         font-size: 6.4vw;
     }
 }
