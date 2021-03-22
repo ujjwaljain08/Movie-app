@@ -12,11 +12,12 @@ const Series = () => {
   const [content, setContent] = useState([]);
   const [numOfPages, setNumOfPages] = useState();
   const genreforURL = useGenres(selectedGenres);
+  const [isData,setData]=useState(false)
 
   const fetchSeries = async () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreforURL}`
-    );
+    );  setData(true)
     setContent(data.results);
     setNumOfPages(data.total_pages);
     // console.log(data);
@@ -31,6 +32,8 @@ const Series = () => {
   return (
     <div>
       <span className="pageTitle">Discover Series</span>
+      <h1 className="loding" style={{color:"white"}}>  {isData?"":"Loding..."}</h1>
+
       <Genres
         type="tv"
         selectedGenres={selectedGenres}
@@ -54,7 +57,7 @@ const Series = () => {
           ))}
       </div>
       {numOfPages > 1 && (
-        <CustomPagination setPage={setPage} numOfPages={numOfPages} />
+        <CustomPagination setpage={setPage} numOfPages={numOfPages} />
       )}
     </div>
   );

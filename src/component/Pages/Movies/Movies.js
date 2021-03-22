@@ -12,16 +12,18 @@ const Movies = () => {
   const [content, setContent] = useState([]);
   const [numOfPages, setNumOfPages] = useState();
   const genreforURL =useGenres(selectedGenres)
+  const [isData,setData]=useState(false)
   // console.log(selectedGenres);
 
   const fetchMovies = async () => {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genreforURL}`
     );
+    setData(true)
     setContent(data.results);
     setNumOfPages(data.total_pages);
   };
-
+ 
   useEffect(() => {
     window.scroll(0, 0);
     fetchMovies();
@@ -31,6 +33,8 @@ const Movies = () => {
   return (
     <div>
       <span className="pageTitle">Discover Movies</span>
+    <h1 className="loding" style={{color:"white"}}>  {isData?"":"Loding..."}</h1>
+     
       <Genres
         type="movie"
         selectedGenres={selectedGenres}

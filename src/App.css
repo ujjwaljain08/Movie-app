@@ -2,7 +2,12 @@
   scroll-behavior: smooth;
 } 
  
- 
+ .loding{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+    
+ }
  .app{
    min-height: 100vh;
    background-color: #393939;

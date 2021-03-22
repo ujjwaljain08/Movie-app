@@ -7,11 +7,15 @@ import "./Trending.css"
 
 function Trending() {
     const [content, setContent] = useState([]);
+    const [isData,setData]=useState(false)
+
+    
     const [page, setpage] = useState(1);
     const fetchTrending=async()=>{
         const {data}=await axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`)
         setContent(data.results)
-        //console.log(data)
+        setData(true)
+        console.log(data)
     }
   useEffect(() => {
        fetchTrending()
@@ -19,7 +23,9 @@ function Trending() {
  
     return (
         <div>
-            <span className="pageTitle">Trending</span>
+            <span className="pageTitle">TrendinG</span>
+            <h1 className="loding" style={{color:"white"}}>  {isData?"":"Loding..."}</h1>
+
             <div className="trending">
                 {
                     content&&content.map((item)=>(

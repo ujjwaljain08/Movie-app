@@ -19,6 +19,7 @@ import {
     const [page, setPage] = useState(1);
     const [content, setContent] = useState([]);
     const [numOfPages, setNumOfPages] = useState();
+
   
     const darkTheme = createMuiTheme({
       palette: {
@@ -36,6 +37,7 @@ import {
             process.env.REACT_APP_API_KEY
           }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
         );
+     
         setContent(data.results);
         setNumOfPages(data.total_pages);
         // console.log(data);
